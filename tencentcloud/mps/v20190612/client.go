@@ -11015,6 +11015,80 @@ func (c *Client) ModifyContentReviewTemplateWithContext(ctx context.Context, req
     return
 }
 
+func NewModifyDocToVideoTaskStatusRequest() (request *ModifyDocToVideoTaskStatusRequest) {
+    request = &ModifyDocToVideoTaskStatusRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    
+    request.Init().WithApiInfo("mps", APIVersion, "ModifyDocToVideoTaskStatus")
+    
+    
+    return
+}
+
+func NewModifyDocToVideoTaskStatusResponse() (response *ModifyDocToVideoTaskStatusResponse) {
+    response = &ModifyDocToVideoTaskStatusResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    } 
+    return
+
+}
+
+// ModifyDocToVideoTaskStatus
+// 修改 AIGC 文档生视频任务状态。
+//
+// 
+//
+// 包含 confirm（确认当前阶段）和 regenerate（重新生成当前阶段）两种动作含义。
+//
+// 可能返回的错误码:
+//  INTERNALERROR = "InternalError"
+//  INVALIDPARAMETER = "InvalidParameter"
+//  INVALIDPARAMETERVALUE_BLOCKCONFIDENCE = "InvalidParameterValue.BlockConfidence"
+//  INVALIDPARAMETERVALUE_COMMENT = "InvalidParameterValue.Comment"
+//  INVALIDPARAMETERVALUE_LABELSET = "InvalidParameterValue.LabelSet"
+//  INVALIDPARAMETERVALUE_NAME = "InvalidParameterValue.Name"
+//  INVALIDPARAMETERVALUE_REVIEWCONFIDENCE = "InvalidParameterValue.ReviewConfidence"
+//  INVALIDPARAMETERVALUE_SWITCH = "InvalidParameterValue.Switch"
+//  RESOURCENOTFOUND_TEMPLATENOTEXIST = "ResourceNotFound.TemplateNotExist"
+func (c *Client) ModifyDocToVideoTaskStatus(request *ModifyDocToVideoTaskStatusRequest) (response *ModifyDocToVideoTaskStatusResponse, err error) {
+    return c.ModifyDocToVideoTaskStatusWithContext(context.Background(), request)
+}
+
+// ModifyDocToVideoTaskStatus
+// 修改 AIGC 文档生视频任务状态。
+//
+// 
+//
+// 包含 confirm（确认当前阶段）和 regenerate（重新生成当前阶段）两种动作含义。
+//
+// 可能返回的错误码:
+//  INTERNALERROR = "InternalError"
+//  INVALIDPARAMETER = "InvalidParameter"
+//  INVALIDPARAMETERVALUE_BLOCKCONFIDENCE = "InvalidParameterValue.BlockConfidence"
+//  INVALIDPARAMETERVALUE_COMMENT = "InvalidParameterValue.Comment"
+//  INVALIDPARAMETERVALUE_LABELSET = "InvalidParameterValue.LabelSet"
+//  INVALIDPARAMETERVALUE_NAME = "InvalidParameterValue.Name"
+//  INVALIDPARAMETERVALUE_REVIEWCONFIDENCE = "InvalidParameterValue.ReviewConfidence"
+//  INVALIDPARAMETERVALUE_SWITCH = "InvalidParameterValue.Switch"
+//  RESOURCENOTFOUND_TEMPLATENOTEXIST = "ResourceNotFound.TemplateNotExist"
+func (c *Client) ModifyDocToVideoTaskStatusWithContext(ctx context.Context, request *ModifyDocToVideoTaskStatusRequest) (response *ModifyDocToVideoTaskStatusResponse, err error) {
+    if request == nil {
+        request = NewModifyDocToVideoTaskStatusRequest()
+    }
+    c.InitBaseRequest(&request.BaseRequest, "mps", APIVersion, "ModifyDocToVideoTaskStatus")
+    
+    if c.GetCredential() == nil {
+        return nil, errors.New("ModifyDocToVideoTaskStatus require credential")
+    }
+
+    request.SetContext(ctx)
+    
+    response = NewModifyDocToVideoTaskStatusResponse()
+    err = c.Send(request, response)
+    return
+}
+
 func NewModifyImageSpriteTemplateRequest() (request *ModifyImageSpriteTemplateRequest) {
     request = &ModifyImageSpriteTemplateRequest{
         BaseRequest: &tchttp.BaseRequest{},

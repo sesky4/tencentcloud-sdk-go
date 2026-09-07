@@ -18627,6 +18627,17 @@ type DocToVideoInput struct {
 	EnableCaption *bool `json:"EnableCaption,omitnil,omitempty" name:"EnableCaption"`
 }
 
+type DocToVideoRegenerateInput struct {
+	// <p>重新生成的范围。</p><p>枚举值：</p><ul><li>full： 该阶段全量重新生成（例如：修改整体的场景数量）</li><li>scenes： 按场景局部重新生成（例如：修改某场景的具体内容）</li></ul>
+	Scope *string `json:"Scope,omitnil,omitempty" name:"Scope"`
+
+	// <p>重新生成时的提示词。</p>
+	Prompt *string `json:"Prompt,omitnil,omitempty" name:"Prompt"`
+
+	// <p>按页局部重新生成时的目标页 ID 数组。仅 Scope=scenes 时必填。不可重复，单次重新生成最多 5 页。</p>
+	SceneIds []*string `json:"SceneIds,omitnil,omitempty" name:"SceneIds"`
+}
+
 type DocToVideoWatermarkInfo struct {
 	// <p>用于生成视频的水印图片 URL。</p>
 	ImageUrl *string `json:"ImageUrl,omitnil,omitempty" name:"ImageUrl"`
@@ -22837,6 +22848,77 @@ func (r *ModifyContentReviewTemplateResponse) ToJsonString() string {
 // FromJsonString It is highly **NOT** recommended to use this function
 // because it has no param check, nor strict type check
 func (r *ModifyContentReviewTemplateResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+type ModifyDocToVideoTaskStatusInput struct {
+	// <p>修改动作类型。</p><p>枚举值：</p><ul><li>confirm： 确认已完成阶段并推进下一阶段</li><li>regenerate： 重新生成指定阶段</li></ul>
+	Action *string `json:"Action,omitnil,omitempty" name:"Action"`
+
+	// <p>修改目标阶段。</p><p>枚举值：</p><ul><li>STAGE_1：<br>Action=confirm 时：确认大纲、继续生成后续配音、动画效果、字幕；<br>Action=regenerate 时：重新生成大纲。</li></ul><ul><li>STAGE_2：<br>Action=confirm 时：确认生成的配音、动画效果、字幕，生成最终成片；<br>Action=regenerate 时：重新生成配音、动画效果、字幕。</li></ul>
+	Stage *string `json:"Stage,omitnil,omitempty" name:"Stage"`
+
+	// <p>需要进行修改的目标任务 ID。</p>
+	SourceTaskId *string `json:"SourceTaskId,omitnil,omitempty" name:"SourceTaskId"`
+
+	// <p>重新生成参数。</p><p>仅 Action=regenerate 时必填。</p>
+	Regenerate *DocToVideoRegenerateInput `json:"Regenerate,omitnil,omitempty" name:"Regenerate"`
+}
+
+// Predefined struct for user
+type ModifyDocToVideoTaskStatusRequestParams struct {
+	// <p>修改AIGC文档生视频任务状态的输入</p>
+	Input *ModifyDocToVideoTaskStatusInput `json:"Input,omitnil,omitempty" name:"Input"`
+}
+
+type ModifyDocToVideoTaskStatusRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>修改AIGC文档生视频任务状态的输入</p>
+	Input *ModifyDocToVideoTaskStatusInput `json:"Input,omitnil,omitempty" name:"Input"`
+}
+
+func (r *ModifyDocToVideoTaskStatusRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ModifyDocToVideoTaskStatusRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "Input")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ModifyDocToVideoTaskStatusRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ModifyDocToVideoTaskStatusResponseParams struct {
+	// <p>任务ID</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type ModifyDocToVideoTaskStatusResponse struct {
+	*tchttp.BaseResponse
+	Response *ModifyDocToVideoTaskStatusResponseParams `json:"Response"`
+}
+
+func (r *ModifyDocToVideoTaskStatusResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ModifyDocToVideoTaskStatusResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 

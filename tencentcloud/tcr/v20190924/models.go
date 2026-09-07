@@ -9475,26 +9475,26 @@ func (r *ModifyUserPasswordPersonalResponse) FromJsonString(s string) error {
 
 // Predefined struct for user
 type ModifyWebhookTriggerRequestParams struct {
-	// 实例Id
+	// <p>实例Id</p>
 	RegistryId *string `json:"RegistryId,omitnil,omitempty" name:"RegistryId"`
 
-	// 触发器参数
+	// <p>触发器参数</p>
 	Trigger *WebhookTrigger `json:"Trigger,omitnil,omitempty" name:"Trigger"`
 
-	// 命名空间
+	// <p>命名空间</p>
 	Namespace *string `json:"Namespace,omitnil,omitempty" name:"Namespace"`
 }
 
 type ModifyWebhookTriggerRequest struct {
 	*tchttp.BaseRequest
 	
-	// 实例Id
+	// <p>实例Id</p>
 	RegistryId *string `json:"RegistryId,omitnil,omitempty" name:"RegistryId"`
 
-	// 触发器参数
+	// <p>触发器参数</p>
 	Trigger *WebhookTrigger `json:"Trigger,omitnil,omitempty" name:"Trigger"`
 
-	// 命名空间
+	// <p>命名空间</p>
 	Namespace *string `json:"Namespace,omitnil,omitempty" name:"Namespace"`
 }
 
@@ -10759,31 +10759,32 @@ type WebhookTarget struct {
 }
 
 type WebhookTrigger struct {
-	// 触发器名称
+	// <p>触发器名称</p>
 	Name *string `json:"Name,omitnil,omitempty" name:"Name"`
 
-	// 触发器目标
+	// <p>触发器目标</p>
 	Targets []*WebhookTarget `json:"Targets,omitnil,omitempty" name:"Targets"`
 
-	// 触发动作
+	// <p>触发动作</p>
 	EventTypes []*string `json:"EventTypes,omitnil,omitempty" name:"EventTypes"`
 
-	// 触发规则
+	// <p>触发规则</p>
 	Condition *string `json:"Condition,omitnil,omitempty" name:"Condition"`
 
-	// 启用触发器
+	// <p>启用触发器</p>
 	Enabled *bool `json:"Enabled,omitnil,omitempty" name:"Enabled"`
 
-	// 触发器Id
+	// <p>触发器Id</p>
 	Id *int64 `json:"Id,omitnil,omitempty" name:"Id"`
 
-	// 触发器描述
+	// <p>触发器描述</p>
 	Description *string `json:"Description,omitnil,omitempty" name:"Description"`
 
-	// 触发器所属命名空间 Id
+	// <p>触发器所属命名空间 Id</p>
 	NamespaceId *int64 `json:"NamespaceId,omitnil,omitempty" name:"NamespaceId"`
 
-	// 触发器所属命名空间名称
+	// <p>触发器所属命名空间名称</p>
+	// 注意：此字段可能返回 null，表示取不到有效值。
 	NamespaceName *string `json:"NamespaceName,omitnil,omitempty" name:"NamespaceName"`
 }
 

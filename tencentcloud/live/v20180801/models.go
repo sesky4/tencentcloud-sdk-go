@@ -2718,22 +2718,142 @@ func (r *CreateCommonMixStreamResponse) FromJsonString(s string) error {
 }
 
 // Predefined struct for user
+type CreateLiveAvatarCloneFigureRequestParams struct {
+	// <p>形象克隆场景类型</p><p>枚举值：</p><ul><li>PHOTO： 图生数字人</li><li>GREEN_SCREEN： 绿幕数字人</li><li>REAL_SHOT： 实景数字人</li></ul>
+	SceneType *string `json:"SceneType,omitnil,omitempty" name:"SceneType"`
+
+	// <p>克隆的形象的名字</p>
+	FigureName *string `json:"FigureName,omitnil,omitempty" name:"FigureName"`
+
+	// <p>克隆的形象的url</p>
+	MaterialUrl *string `json:"MaterialUrl,omitnil,omitempty" name:"MaterialUrl"`
+
+	// <p>克隆的形象的性别</p><p>枚举值：</p><ul><li>MALE： 男</li><li>FEMALE： 女</li><li>UNHNOWN： 不知道</li></ul>
+	Gender *string `json:"Gender,omitnil,omitempty" name:"Gender"`
+
+	// <p>授权pdf</p>
+	IdentityWrittenUrl *string `json:"IdentityWrittenUrl,omitnil,omitempty" name:"IdentityWrittenUrl"`
+
+	// <p>授权视频</p>
+	IdentityVideoUrl *string `json:"IdentityVideoUrl,omitnil,omitempty" name:"IdentityVideoUrl"`
+
+	// <p>图生视频时，动作训练幅度大小</p><p>枚举值：</p><ul><li>0： 只有头部轻微动</li><li>1： 头部跟身体均动</li></ul>
+	PhotoVersion *uint64 `json:"PhotoVersion,omitnil,omitempty" name:"PhotoVersion"`
+}
+
+type CreateLiveAvatarCloneFigureRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>形象克隆场景类型</p><p>枚举值：</p><ul><li>PHOTO： 图生数字人</li><li>GREEN_SCREEN： 绿幕数字人</li><li>REAL_SHOT： 实景数字人</li></ul>
+	SceneType *string `json:"SceneType,omitnil,omitempty" name:"SceneType"`
+
+	// <p>克隆的形象的名字</p>
+	FigureName *string `json:"FigureName,omitnil,omitempty" name:"FigureName"`
+
+	// <p>克隆的形象的url</p>
+	MaterialUrl *string `json:"MaterialUrl,omitnil,omitempty" name:"MaterialUrl"`
+
+	// <p>克隆的形象的性别</p><p>枚举值：</p><ul><li>MALE： 男</li><li>FEMALE： 女</li><li>UNHNOWN： 不知道</li></ul>
+	Gender *string `json:"Gender,omitnil,omitempty" name:"Gender"`
+
+	// <p>授权pdf</p>
+	IdentityWrittenUrl *string `json:"IdentityWrittenUrl,omitnil,omitempty" name:"IdentityWrittenUrl"`
+
+	// <p>授权视频</p>
+	IdentityVideoUrl *string `json:"IdentityVideoUrl,omitnil,omitempty" name:"IdentityVideoUrl"`
+
+	// <p>图生视频时，动作训练幅度大小</p><p>枚举值：</p><ul><li>0： 只有头部轻微动</li><li>1： 头部跟身体均动</li></ul>
+	PhotoVersion *uint64 `json:"PhotoVersion,omitnil,omitempty" name:"PhotoVersion"`
+}
+
+func (r *CreateLiveAvatarCloneFigureRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *CreateLiveAvatarCloneFigureRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "SceneType")
+	delete(f, "FigureName")
+	delete(f, "MaterialUrl")
+	delete(f, "Gender")
+	delete(f, "IdentityWrittenUrl")
+	delete(f, "IdentityVideoUrl")
+	delete(f, "PhotoVersion")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateLiveAvatarCloneFigureRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type CreateLiveAvatarCloneFigureResponseParams struct {
+	// <p>该图克隆形象生成的任务id</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// <p>该克隆形象返回的状态</p><p>枚举值：</p><ul><li>SUBMITTING： 已受理</li><li>CHECKING： 检查中</li><li>QUEUE： 排队中</li><li>MAKING： 训练中</li><li>CONFIRMING： 效果确认</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+	Status *string `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type CreateLiveAvatarCloneFigureResponse struct {
+	*tchttp.BaseResponse
+	Response *CreateLiveAvatarCloneFigureResponseParams `json:"Response"`
+}
+
+func (r *CreateLiveAvatarCloneFigureResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *CreateLiveAvatarCloneFigureResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
 type CreateLiveAvatarRoomRequestParams struct {
-	// 直播间名称。
+	// <p>直播间名称。</p>
 	Name *string `json:"Name,omitnil,omitempty" name:"Name"`
 
-	// 操作者。
+	// <p>操作者。</p>
 	Operator *string `json:"Operator,omitnil,omitempty" name:"Operator"`
+
+	// <p>形象ID</p>
+	AvatarKey *string `json:"AvatarKey,omitnil,omitempty" name:"AvatarKey"`
+
+	// <p>音色ID</p>
+	TimbreKey *string `json:"TimbreKey,omitnil,omitempty" name:"TimbreKey"`
+
+	// <p>房间模式</p><p>枚举值：</p><ul><li>INTERACT： 交互模式</li><li>FREE： 自由模式</li><li>NORMAL： 普通模式</li></ul>
+	LiveMode *string `json:"LiveMode,omitnil,omitempty" name:"LiveMode"`
 }
 
 type CreateLiveAvatarRoomRequest struct {
 	*tchttp.BaseRequest
 	
-	// 直播间名称。
+	// <p>直播间名称。</p>
 	Name *string `json:"Name,omitnil,omitempty" name:"Name"`
 
-	// 操作者。
+	// <p>操作者。</p>
 	Operator *string `json:"Operator,omitnil,omitempty" name:"Operator"`
+
+	// <p>形象ID</p>
+	AvatarKey *string `json:"AvatarKey,omitnil,omitempty" name:"AvatarKey"`
+
+	// <p>音色ID</p>
+	TimbreKey *string `json:"TimbreKey,omitnil,omitempty" name:"TimbreKey"`
+
+	// <p>房间模式</p><p>枚举值：</p><ul><li>INTERACT： 交互模式</li><li>FREE： 自由模式</li><li>NORMAL： 普通模式</li></ul>
+	LiveMode *string `json:"LiveMode,omitnil,omitempty" name:"LiveMode"`
 }
 
 func (r *CreateLiveAvatarRoomRequest) ToJsonString() string {
@@ -2750,6 +2870,9 @@ func (r *CreateLiveAvatarRoomRequest) FromJsonString(s string) error {
 	}
 	delete(f, "Name")
 	delete(f, "Operator")
+	delete(f, "AvatarKey")
+	delete(f, "TimbreKey")
+	delete(f, "LiveMode")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateLiveAvatarRoomRequest has unknown keys!", "")
 	}
@@ -2758,7 +2881,7 @@ func (r *CreateLiveAvatarRoomRequest) FromJsonString(s string) error {
 
 // Predefined struct for user
 type CreateLiveAvatarRoomResponseParams struct {
-	// 数字人直播间 ID。
+	// <p>数字人直播间 ID。</p>
 	RoomId *string `json:"RoomId,omitnil,omitempty" name:"RoomId"`
 
 	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -6159,6 +6282,60 @@ func (r *DeleteCasterResponse) FromJsonString(s string) error {
 }
 
 // Predefined struct for user
+type DeleteLiveAvatarCloneFigureRequestParams struct {
+	// <p>待查的克隆形象的TaskId</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+}
+
+type DeleteLiveAvatarCloneFigureRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>待查的克隆形象的TaskId</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+}
+
+func (r *DeleteLiveAvatarCloneFigureRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DeleteLiveAvatarCloneFigureRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "TaskId")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DeleteLiveAvatarCloneFigureRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DeleteLiveAvatarCloneFigureResponseParams struct {
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type DeleteLiveAvatarCloneFigureResponse struct {
+	*tchttp.BaseResponse
+	Response *DeleteLiveAvatarCloneFigureResponseParams `json:"Response"`
+}
+
+func (r *DeleteLiveAvatarCloneFigureResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DeleteLiveAvatarCloneFigureResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
 type DeleteLiveAvatarRoomRequestParams struct {
 	// 直播间ID。
 	RoomId *string `json:"RoomId,omitnil,omitempty" name:"RoomId"`
@@ -9448,6 +9625,87 @@ func (r *DescribeLiveAvatarBackgroundListResponse) ToJsonString() string {
 // FromJsonString It is highly **NOT** recommended to use this function
 // because it has no param check, nor strict type check
 func (r *DescribeLiveAvatarBackgroundListResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DescribeLiveAvatarCloneFigureListRequestParams struct {
+	// <p>待查询的克隆形象的TaskId</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// <p>根据状态查询克隆形象</p><p>枚举值：</p><ul><li>SUBMITTING： 已受理</li><li>CHECKING： 检查中</li><li>QUEUE： 排队中</li><li>MAKING： 训练中</li><li>CONFIRMING： 效果确认</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+	Status *string `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// <p>期望返回克隆形象的个数（最多20个）</p>
+	Limit *string `json:"Limit,omitnil,omitempty" name:"Limit"`
+
+	// <p>期望返回克隆形象的起始偏移位置（默认为0）</p>
+	Offset *string `json:"Offset,omitnil,omitempty" name:"Offset"`
+}
+
+type DescribeLiveAvatarCloneFigureListRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>待查询的克隆形象的TaskId</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// <p>根据状态查询克隆形象</p><p>枚举值：</p><ul><li>SUBMITTING： 已受理</li><li>CHECKING： 检查中</li><li>QUEUE： 排队中</li><li>MAKING： 训练中</li><li>CONFIRMING： 效果确认</li><li>SUCCESS： 成功</li><li>FAIL： 失败</li></ul>
+	Status *string `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// <p>期望返回克隆形象的个数（最多20个）</p>
+	Limit *string `json:"Limit,omitnil,omitempty" name:"Limit"`
+
+	// <p>期望返回克隆形象的起始偏移位置（默认为0）</p>
+	Offset *string `json:"Offset,omitnil,omitempty" name:"Offset"`
+}
+
+func (r *DescribeLiveAvatarCloneFigureListRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeLiveAvatarCloneFigureListRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "TaskId")
+	delete(f, "Status")
+	delete(f, "Limit")
+	delete(f, "Offset")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DescribeLiveAvatarCloneFigureListRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DescribeLiveAvatarCloneFigureListResponseParams struct {
+	// <p>克隆形象列表</p>
+	CloneFigureList []*LiveAvatarCloneFigureInfo `json:"CloneFigureList,omitnil,omitempty" name:"CloneFigureList"`
+
+	// <p>克隆形象总个数</p><p>单位：个</p>
+	TotalCount *uint64 `json:"TotalCount,omitnil,omitempty" name:"TotalCount"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type DescribeLiveAvatarCloneFigureListResponse struct {
+	*tchttp.BaseResponse
+	Response *DescribeLiveAvatarCloneFigureListResponseParams `json:"Response"`
+}
+
+func (r *DescribeLiveAvatarCloneFigureListResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeLiveAvatarCloneFigureListResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
@@ -16740,6 +16998,65 @@ func (r *InsertTaskTemporaryFilesResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
+type LiveAvatarCloneFigureInfo struct {
+	// <p>克隆形象任务ID</p>
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// <p>场景模式</p><p>枚举值：</p><ul><li>PHOTO： 图生形象</li><li>GREEN_SCREEN： 绿幕形象</li><li>REAL_SHOT： 实景形象</li></ul>
+	SceneType *string `json:"SceneType,omitnil,omitempty" name:"SceneType"`
+
+	// <p>形象名称</p>
+	FigureName *string `json:"FigureName,omitnil,omitempty" name:"FigureName"`
+
+	// <p>性别：男或者女</p>
+	Gender *string `json:"Gender,omitnil,omitempty" name:"Gender"`
+
+	// <p>状态</p><p>枚举值：</p><ul><li>SUCCESS： 成功</li><li>FAILED： 失败</li><li>PROCESSING： 生成中</li></ul>
+	Status *string `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// <p>进度条</p>
+	Progress *uint64 `json:"Progress,omitnil,omitempty" name:"Progress"`
+
+	// <p>克隆好的形象在系统的key</p>
+	AvatarKey *string `json:"AvatarKey,omitnil,omitempty" name:"AvatarKey"`
+
+	// <p>形象的图像</p>
+	FigureImg *string `json:"FigureImg,omitnil,omitempty" name:"FigureImg"`
+
+	// <p>失败原因，成功时，该字段没值</p>
+	FailReason *string `json:"FailReason,omitnil,omitempty" name:"FailReason"`
+
+	// <p>训练视频</p>
+	MaterialUrl *string `json:"MaterialUrl,omitnil,omitempty" name:"MaterialUrl"`
+
+	// <p>该克隆音色创建的时间</p><p>参数格式：YYYY-MM-DD</p>
+	CreateTime *string `json:"CreateTime,omitnil,omitempty" name:"CreateTime"`
+
+	// <p>更新时间</p><p>参数格式：YYYY-MM</p>
+	UpdateTime *string `json:"UpdateTime,omitnil,omitempty" name:"UpdateTime"`
+
+	// <p>是否有续期</p>
+	RenewStatus *string `json:"RenewStatus,omitnil,omitempty" name:"RenewStatus"`
+
+	// <p>是否过期</p>
+	IsExpired *bool `json:"IsExpired,omitnil,omitempty" name:"IsExpired"`
+
+	// <p>有效期时间</p><p>参数格式：YYYY-MM</p>
+	ExpireTime *string `json:"ExpireTime,omitnil,omitempty" name:"ExpireTime"`
+
+	// <p>是否循环播放(实景克隆形象能使用)</p>
+	NeedPlayback *uint64 `json:"NeedPlayback,omitnil,omitempty" name:"NeedPlayback"`
+
+	// <p>训练幅度，0：表示只有有头部动；1表示头部和手势都有训练</p><p>单位：1</p>
+	PhotoVersion *uint64 `json:"PhotoVersion,omitnil,omitempty" name:"PhotoVersion"`
+
+	// <p>待确认视频</p>
+	ConfirmDemoUrls *string `json:"ConfirmDemoUrls,omitnil,omitempty" name:"ConfirmDemoUrls"`
+
+	// <p>形象克隆完成时间</p><p>参数格式：YYYY-MM</p>
+	EstimatedCompleteTime *string `json:"EstimatedCompleteTime,omitnil,omitempty" name:"EstimatedCompleteTime"`
+}
+
 type LiveCertDomainInfo struct {
 	// 域名。
 	DomainName *string `json:"DomainName,omitnil,omitempty" name:"DomainName"`
@@ -21232,6 +21549,18 @@ type StartLiveAvatarRoomRequestParams struct {
 
 	// <p>房间类型。AIGC：AIGC形象房间；PRESET：预设形象房间</p><p>枚举值：</p><ul><li>AIGC： AIGC形象房间</li><li>PRESET： 预设形象房间</li></ul>
 	RoomType *string `json:"RoomType,omitnil,omitempty" name:"RoomType"`
+
+	// <p>交互模式下的协议，支持rtmp和trtc，默认是rtmp</p>
+	SessionProtocol *string `json:"SessionProtocol,omitnil,omitempty" name:"SessionProtocol"`
+
+	// <p>使用trtc协议时，在trtc的appid</p>
+	TrtcSdkAppId *string `json:"TrtcSdkAppId,omitnil,omitempty" name:"TrtcSdkAppId"`
+
+	// <p>进入房间时需要用UserSign来校验权限</p>
+	TrtcUserSig *string `json:"TrtcUserSig,omitnil,omitempty" name:"TrtcUserSig"`
+
+	// <p>要进入的房间</p>
+	TrtcRoomId *string `json:"TrtcRoomId,omitnil,omitempty" name:"TrtcRoomId"`
 }
 
 type StartLiveAvatarRoomRequest struct {
@@ -21251,6 +21580,18 @@ type StartLiveAvatarRoomRequest struct {
 
 	// <p>房间类型。AIGC：AIGC形象房间；PRESET：预设形象房间</p><p>枚举值：</p><ul><li>AIGC： AIGC形象房间</li><li>PRESET： 预设形象房间</li></ul>
 	RoomType *string `json:"RoomType,omitnil,omitempty" name:"RoomType"`
+
+	// <p>交互模式下的协议，支持rtmp和trtc，默认是rtmp</p>
+	SessionProtocol *string `json:"SessionProtocol,omitnil,omitempty" name:"SessionProtocol"`
+
+	// <p>使用trtc协议时，在trtc的appid</p>
+	TrtcSdkAppId *string `json:"TrtcSdkAppId,omitnil,omitempty" name:"TrtcSdkAppId"`
+
+	// <p>进入房间时需要用UserSign来校验权限</p>
+	TrtcUserSig *string `json:"TrtcUserSig,omitnil,omitempty" name:"TrtcUserSig"`
+
+	// <p>要进入的房间</p>
+	TrtcRoomId *string `json:"TrtcRoomId,omitnil,omitempty" name:"TrtcRoomId"`
 }
 
 func (r *StartLiveAvatarRoomRequest) ToJsonString() string {
@@ -21270,6 +21611,10 @@ func (r *StartLiveAvatarRoomRequest) FromJsonString(s string) error {
 	delete(f, "ToUrl")
 	delete(f, "Operator")
 	delete(f, "RoomType")
+	delete(f, "SessionProtocol")
+	delete(f, "TrtcSdkAppId")
+	delete(f, "TrtcUserSig")
+	delete(f, "TrtcRoomId")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "StartLiveAvatarRoomRequest has unknown keys!", "")
 	}

@@ -2200,39 +2200,51 @@ func (r *GetFlowAlarmInfoResponse) FromJsonString(s string) error {
 
 // Predefined struct for user
 type GetFlowPackagesRequestParams struct {
-	// 页码，从1开始
+	// <p>页码，从1开始</p>
 	PageNumber *uint64 `json:"PageNumber,omitnil,omitempty" name:"PageNumber"`
 
-	// 每页个数
+	// <p>每页个数</p>
 	PageSize *uint64 `json:"PageSize,omitnil,omitempty" name:"PageSize"`
 
-	// 流量包的唯一资源ID
+	// <p>流量包的唯一资源ID</p>
 	ResourceId *string `json:"ResourceId,omitnil,omitempty" name:"ResourceId"`
 
-	// 流量包绑定的设备ID
+	// <p>流量包绑定的设备ID</p>
 	DeviceId *string `json:"DeviceId,omitnil,omitempty" name:"DeviceId"`
 
-	// 流量包状态，0：未生效，1：有效期内，2：已过期
+	// <p>流量包状态，0：未生效，1：有效期内，2：已过期</p>
 	Status *int64 `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// <p>生效时间在此时间之后</p>
+	ActiveTimeStart *string `json:"ActiveTimeStart,omitnil,omitempty" name:"ActiveTimeStart"`
+
+	// <p>生效时间在此时间之前</p>
+	ActiveTimeEnd *string `json:"ActiveTimeEnd,omitnil,omitempty" name:"ActiveTimeEnd"`
 }
 
 type GetFlowPackagesRequest struct {
 	*tchttp.BaseRequest
 	
-	// 页码，从1开始
+	// <p>页码，从1开始</p>
 	PageNumber *uint64 `json:"PageNumber,omitnil,omitempty" name:"PageNumber"`
 
-	// 每页个数
+	// <p>每页个数</p>
 	PageSize *uint64 `json:"PageSize,omitnil,omitempty" name:"PageSize"`
 
-	// 流量包的唯一资源ID
+	// <p>流量包的唯一资源ID</p>
 	ResourceId *string `json:"ResourceId,omitnil,omitempty" name:"ResourceId"`
 
-	// 流量包绑定的设备ID
+	// <p>流量包绑定的设备ID</p>
 	DeviceId *string `json:"DeviceId,omitnil,omitempty" name:"DeviceId"`
 
-	// 流量包状态，0：未生效，1：有效期内，2：已过期
+	// <p>流量包状态，0：未生效，1：有效期内，2：已过期</p>
 	Status *int64 `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// <p>生效时间在此时间之后</p>
+	ActiveTimeStart *string `json:"ActiveTimeStart,omitnil,omitempty" name:"ActiveTimeStart"`
+
+	// <p>生效时间在此时间之前</p>
+	ActiveTimeEnd *string `json:"ActiveTimeEnd,omitnil,omitempty" name:"ActiveTimeEnd"`
 }
 
 func (r *GetFlowPackagesRequest) ToJsonString() string {
@@ -2252,6 +2264,8 @@ func (r *GetFlowPackagesRequest) FromJsonString(s string) error {
 	delete(f, "ResourceId")
 	delete(f, "DeviceId")
 	delete(f, "Status")
+	delete(f, "ActiveTimeStart")
+	delete(f, "ActiveTimeEnd")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "GetFlowPackagesRequest has unknown keys!", "")
 	}
@@ -2260,10 +2274,10 @@ func (r *GetFlowPackagesRequest) FromJsonString(s string) error {
 
 // Predefined struct for user
 type GetFlowPackagesResponseParams struct {
-	// 流量包列表
+	// <p>流量包列表</p>
 	PackageList []*FlowPackageInfo `json:"PackageList,omitnil,omitempty" name:"PackageList"`
 
-	// 总数
+	// <p>总数</p>
 	Total *uint64 `json:"Total,omitnil,omitempty" name:"Total"`
 
 	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

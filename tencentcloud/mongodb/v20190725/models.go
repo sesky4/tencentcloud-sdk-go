@@ -7988,6 +7988,127 @@ type RestoreDatabases struct {
 	Collections []*RestoreCollection `json:"Collections,omitnil,omitempty" name:"Collections"`
 }
 
+// Predefined struct for user
+type ScaleDownDBInstanceCpuRequestParams struct {
+	// <p>实例ID</p>
+	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
+}
+
+type ScaleDownDBInstanceCpuRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>实例ID</p>
+	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
+}
+
+func (r *ScaleDownDBInstanceCpuRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ScaleDownDBInstanceCpuRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "InstanceId")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ScaleDownDBInstanceCpuRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ScaleDownDBInstanceCpuResponseParams struct {
+	// <p>任务流ID</p>
+	FlowId *int64 `json:"FlowId,omitnil,omitempty" name:"FlowId"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type ScaleDownDBInstanceCpuResponse struct {
+	*tchttp.BaseResponse
+	Response *ScaleDownDBInstanceCpuResponseParams `json:"Response"`
+}
+
+func (r *ScaleDownDBInstanceCpuResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ScaleDownDBInstanceCpuResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ScaleUpDBInstanceCpuRequestParams struct {
+	// <p>实例ID</p>
+	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
+
+	// <p>要扩容的CPU核数（增量），每个节点都会增加这么多核数</p>
+	ExtraCpu *int64 `json:"ExtraCpu,omitnil,omitempty" name:"ExtraCpu"`
+}
+
+type ScaleUpDBInstanceCpuRequest struct {
+	*tchttp.BaseRequest
+	
+	// <p>实例ID</p>
+	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
+
+	// <p>要扩容的CPU核数（增量），每个节点都会增加这么多核数</p>
+	ExtraCpu *int64 `json:"ExtraCpu,omitnil,omitempty" name:"ExtraCpu"`
+}
+
+func (r *ScaleUpDBInstanceCpuRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ScaleUpDBInstanceCpuRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "InstanceId")
+	delete(f, "ExtraCpu")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ScaleUpDBInstanceCpuRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ScaleUpDBInstanceCpuResponseParams struct {
+	// <p>任务流ID</p>
+	FlowId *int64 `json:"FlowId,omitnil,omitempty" name:"FlowId"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type ScaleUpDBInstanceCpuResponse struct {
+	*tchttp.BaseResponse
+	Response *ScaleUpDBInstanceCpuResponseParams `json:"Response"`
+}
+
+func (r *ScaleUpDBInstanceCpuResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ScaleUpDBInstanceCpuResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
 type SecurityGroup struct {
 	// 所属项目 ID。
 	ProjectId *int64 `json:"ProjectId,omitnil,omitempty" name:"ProjectId"`

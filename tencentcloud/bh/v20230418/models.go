@@ -514,6 +514,9 @@ type AppAsset struct {
 	// <p>客户端工具类型</p>
 	ClientAppKind *string `json:"ClientAppKind,omitnil,omitempty" name:"ClientAppKind"`
 
+	// <p>客户端工具启动参数</p>
+	ClientAppArgs []*string `json:"ClientAppArgs,omitnil,omitempty" name:"ClientAppArgs"`
+
 	// <p>应用资产url</p>
 	Url *string `json:"Url,omitnil,omitempty" name:"Url"`
 
@@ -9102,15 +9105,21 @@ func (r *ResetDeviceAccountPrivateKeyResponse) FromJsonString(s string) error {
 
 // Predefined struct for user
 type ResetUserRequestParams struct {
-	// 用户ID集合
+	// <p>用户ID集合</p>
 	IdSet []*uint64 `json:"IdSet,omitnil,omitempty" name:"IdSet"`
+
+	// <p>重置类型</p><p>枚举值：</p><ul><li>0： 同时重置本地认证密码、OTP验证码</li><li>1： 仅重置本地认证密码</li><li>2： 仅重置OTP验证码</li></ul><p>默认值：0</p>
+	ResetType *uint64 `json:"ResetType,omitnil,omitempty" name:"ResetType"`
 }
 
 type ResetUserRequest struct {
 	*tchttp.BaseRequest
 	
-	// 用户ID集合
+	// <p>用户ID集合</p>
 	IdSet []*uint64 `json:"IdSet,omitnil,omitempty" name:"IdSet"`
+
+	// <p>重置类型</p><p>枚举值：</p><ul><li>0： 同时重置本地认证密码、OTP验证码</li><li>1： 仅重置本地认证密码</li><li>2： 仅重置OTP验证码</li></ul><p>默认值：0</p>
+	ResetType *uint64 `json:"ResetType,omitnil,omitempty" name:"ResetType"`
 }
 
 func (r *ResetUserRequest) ToJsonString() string {
@@ -9126,6 +9135,7 @@ func (r *ResetUserRequest) FromJsonString(s string) error {
 		return err
 	}
 	delete(f, "IdSet")
+	delete(f, "ResetType")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ResetUserRequest has unknown keys!", "")
 	}

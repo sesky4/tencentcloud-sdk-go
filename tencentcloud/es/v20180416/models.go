@@ -420,50 +420,53 @@ type CollectorConfigInfo struct {
 }
 
 type CollectorOutputInstance struct {
-	// 采集器输出的实例类型（支持elasticsearch、logstash）
+	// <p>采集器输出的实例类型（支持elasticsearch、logstash）</p>
 	Type *string `json:"Type,omitnil,omitempty" name:"Type"`
 
-	// 采集器输出的实例ID
+	// <p>采集器输出的实例ID</p>
 	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
 
-	// 采集器输出到的ES实例的用户名
+	// <p>采集器输出到的ES实例的用户名</p>
 	ESUserName *string `json:"ESUserName,omitnil,omitempty" name:"ESUserName"`
 
-	// 采集器输出到的ES实例的密码
+	// <p>采集器输出到的ES实例的密码</p>
 	ESUserPasswd *string `json:"ESUserPasswd,omitnil,omitempty" name:"ESUserPasswd"`
 
-	// 采集器输出到ES实例时，是否开启监控（1为开启，0为不开启，默认为0）
+	// <p>采集器输出到ES实例时，是否开启监控（1为开启，0为不开启，默认为0）</p>
 	EnableMonitoring *int64 `json:"EnableMonitoring,omitnil,omitempty" name:"EnableMonitoring"`
 
-	// 采集器输出到ES实例时，是否开启自动在kibana中生成Dashboard（1为开启，0为不开启，默认为0）
+	// <p>采集器输出到ES实例时，是否开启自动在kibana中生成Dashboard（1为开启，0为不开启，默认为0）</p>
 	EnableDashboard *int64 `json:"EnableDashboard,omitnil,omitempty" name:"EnableDashboard"`
 
-	// Ckafka实例的vip
+	// <p>Ckafka实例的vip</p>
 	KafkaEndpoint *string `json:"KafkaEndpoint,omitnil,omitempty" name:"KafkaEndpoint"`
 
-	// Ckafka实例中的Topic
+	// <p>Ckafka实例中的Topic</p>
 	KafkaTopic *string `json:"KafkaTopic,omitnil,omitempty" name:"KafkaTopic"`
 
-	// Ckafka实例的版本号
+	// <p>Ckafka实例的版本号</p>
 	KafkaVersion *string `json:"KafkaVersion,omitnil,omitempty" name:"KafkaVersion"`
 
-	// topic id
+	// <p>topic id</p>
 	SesTopicId *string `json:"SesTopicId,omitnil,omitempty" name:"SesTopicId"`
 
-	// topic name
+	// <p>topic name</p>
 	SesTopicName *string `json:"SesTopicName,omitnil,omitempty" name:"SesTopicName"`
 
-	// topic address
+	// <p>topic address</p>
 	SesTopicAddress *string `json:"SesTopicAddress,omitnil,omitempty" name:"SesTopicAddress"`
 
-	// /
+	// <p>/</p>
 	SesTopicUserName *string `json:"SesTopicUserName,omitnil,omitempty" name:"SesTopicUserName"`
 
-	// /
+	// <p>/</p>
 	SesTopicPasswd *string `json:"SesTopicPasswd,omitnil,omitempty" name:"SesTopicPasswd"`
 
-	// /
+	// <p>/</p>
 	LogstashListenPort *uint64 `json:"LogstashListenPort,omitnil,omitempty" name:"LogstashListenPort"`
+
+	// <p>serverless 的 spaceid</p>
+	SesSpaceId *string `json:"SesSpaceId,omitnil,omitempty" name:"SesSpaceId"`
 }
 
 type CollectorTarget struct {

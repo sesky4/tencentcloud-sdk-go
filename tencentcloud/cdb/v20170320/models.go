@@ -3243,6 +3243,9 @@ type CreateDBInstanceHourRequestParams struct {
 
 	// <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
 	FourthZone *string `json:"FourthZone,omitnil,omitempty" name:"FourthZone"`
+
+	// <p>弹性扩容参数（如果不传，则不开启）</p>
+	AutoStrategy *AutoStrategy `json:"AutoStrategy,omitnil,omitempty" name:"AutoStrategy"`
 }
 
 type CreateDBInstanceHourRequest struct {
@@ -3382,6 +3385,9 @@ type CreateDBInstanceHourRequest struct {
 
 	// <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
 	FourthZone *string `json:"FourthZone,omitnil,omitempty" name:"FourthZone"`
+
+	// <p>弹性扩容参数（如果不传，则不开启）</p>
+	AutoStrategy *AutoStrategy `json:"AutoStrategy,omitnil,omitempty" name:"AutoStrategy"`
 }
 
 func (r *CreateDBInstanceHourRequest) ToJsonString() string {
@@ -3441,6 +3447,7 @@ func (r *CreateDBInstanceHourRequest) FromJsonString(s string) error {
 	delete(f, "DiskEncryption")
 	delete(f, "DestroyProtect")
 	delete(f, "FourthZone")
+	delete(f, "AutoStrategy")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateDBInstanceHourRequest has unknown keys!", "")
 	}
@@ -3608,6 +3615,9 @@ type CreateDBInstanceRequestParams struct {
 
 	// <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
 	FourthZone *string `json:"FourthZone,omitnil,omitempty" name:"FourthZone"`
+
+	// <p>弹性扩容参数（如果不传，则不开启）</p>
+	AutoStrategy *AutoStrategy `json:"AutoStrategy,omitnil,omitempty" name:"AutoStrategy"`
 }
 
 type CreateDBInstanceRequest struct {
@@ -3744,6 +3754,9 @@ type CreateDBInstanceRequest struct {
 
 	// <p>备库 3 的可用区信息，默认为空，购买四节点主实例时可指定该参数。</p>
 	FourthZone *string `json:"FourthZone,omitnil,omitempty" name:"FourthZone"`
+
+	// <p>弹性扩容参数（如果不传，则不开启）</p>
+	AutoStrategy *AutoStrategy `json:"AutoStrategy,omitnil,omitempty" name:"AutoStrategy"`
 }
 
 func (r *CreateDBInstanceRequest) ToJsonString() string {
@@ -3802,6 +3815,7 @@ func (r *CreateDBInstanceRequest) FromJsonString(s string) error {
 	delete(f, "DiskEncryption")
 	delete(f, "DestroyProtect")
 	delete(f, "FourthZone")
+	delete(f, "AutoStrategy")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateDBInstanceRequest has unknown keys!", "")
 	}
